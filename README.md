@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Projeto ETL de Terremotos com API USGS
 
 Este projeto realiza um pipeline de dados automatizado com Python, Airflow e Hadoop, consumindo dados sísmicos da API da USGS.
