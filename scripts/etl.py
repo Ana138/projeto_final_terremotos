@@ -2,6 +2,7 @@ import requests
 import pandas as pd
 import os
 
+#Consulta a API USGS para obter os dados sísmicos de 2024 com magnitude minima de 5
 def extrair_terremotos():
     """Extrai dados de terremotos da API USGS e salva arquivos brutos."""
     url = "https://earthquake.usgs.gov/fdsnws/event/1/query"
@@ -23,7 +24,7 @@ def extrair_terremotos():
     # Converte a resposta para JSON
     data = response.json()
     
-    # Verifica se a resposta contém dados válidos
+    # Verifica se a resposta contem dados validos
     if "features" not in data:
         print("Nenhum dado encontrado na resposta.")
         return None
@@ -77,6 +78,8 @@ def transformar_dados(df):
     return df
 
 # Função principal para extrair e transformar os dados
+#OBS: Ao final, o script executa tudo automaticamente se for rodado diretamente (via python scripts/etl.py)
+#fui por essa abordagem tanto para realizar os testes locais quanto para orquestração no Airflow.
 if __name__ == "__main__":
     df_terremotos = extrair_terremotos()
     if df_terremotos is not None:
